@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import EditTodo from "./EditTodo";
 import TodoList from "./TodoList";
+import "./TodoForm.css";
 
 const TodoForm = () => {
   // Use State for collect onChange input
@@ -46,6 +47,7 @@ const TodoForm = () => {
     }
     // console.log(tasks);
     setEnterTask("");
+    setIsShow(false);
   };
   //Delete task using filter
   const deleteHandler = (id) => {
@@ -89,22 +91,26 @@ const TodoForm = () => {
   return (
     <>
       {!isShow && !isEditing && (
-        <button onClick={showInputHandler}>Add Task</button>
+        <div className="actions">
+          <button onClick={showInputHandler}>Add Task</button>
+        </div>
       )}
       {isShow && (
-        <form onSubmit={RecordTaskHandler}>
+        <form className="form" onSubmit={RecordTaskHandler}>
           <input
             type="text"
-            placeholder="enter Text"
+            placeholder="Enter Your Task"
             onChange={inputHandler}
             value={enterTask}
             required
           />
-          <button type="submit">Add</button>
-          <button onClick={hideInputHandler}>Cancel</button>
+          <div className="actions">
+            <button type="submit">Add</button>
+            <button onClick={hideInputHandler}>Cancel</button>
+          </div>
         </form>
       )}
-      {isEditing && (
+      {isEditing && !isShow && (
         <EditTodo
           taskToEdit={currentTask}
           onSubmitHandler={handleEditForm}

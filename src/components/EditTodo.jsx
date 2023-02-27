@@ -1,8 +1,9 @@
 import React from "react";
+import "./TodoForm.css";
 
 const EditTodo = ({ onSubmitHandler, taskToEdit, onEdit }) => {
   return (
-    <form onSubmit={onSubmitHandler}>
+    <form className="form" onSubmit={onSubmitHandler}>
       <h2>Edit Todo </h2>
       <label htmlFor="edit">Edit : Todo</label>
       <input
@@ -12,7 +13,9 @@ const EditTodo = ({ onSubmitHandler, taskToEdit, onEdit }) => {
         value={taskToEdit.task}
         onChange={onEdit}
       />
-      <button type="submit">Update</button>
+      <div className="actions">
+        <button type="submit">Update</button>
+      </div>
     </form>
   );
 };
