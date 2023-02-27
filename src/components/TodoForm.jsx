@@ -15,11 +15,13 @@ const TodoForm = () => {
       return [];
     }
   });
-  // How of hide from by using true false State
+  // show or hide form by using true false State
   const [isShow, setIsShow] = useState(false);
+  // setIsShow = true mean render the form for add the Task
   const showInputHandler = () => {
     setIsShow(true);
   };
+  // setIsShow = false mean not to render the form
   const hideInputHandler = () => {
     setIsShow(false);
   };
@@ -67,6 +69,7 @@ const TodoForm = () => {
     setIsEditing(true);
     setCurrentTask({ ...enterTask });
   };
+  //map new task that user updated into old task use setTask state
   const updateHandler = (id, upDatedTask) => {
     const upDatedItem = tasks.map((task) => {
       return task.id === id ? upDatedTask : task;
@@ -78,14 +81,14 @@ const TodoForm = () => {
     e.preventDefault();
     updateHandler(currentTask.id, currentTask);
   }
-  //
+  //toggleComplete for check id that coming is equal to id  or not ( I Set it to equal) to change css class
   const toggleComplete = (id) => {
     setTasks(
       tasks.map((task) =>
         task.id === id ? { ...task, complete: !task.complete } : task
       )
     );
-    console.log(id, tasks);
+    //console.log(id, tasks);
   };
   //Done
   return (
